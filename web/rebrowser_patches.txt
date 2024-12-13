@@ -1,0 +1,16 @@
+Install Chocolatey (if it is still not installed)
+Set-ExecutionPolicy Bypass -Scope Process -Force; `
+[System.Net.ServicePointManager]::SecurityProtocol = `
+[System.Net.ServicePointManager]::SecurityProtocol -bor 3072; `
+iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+
+Install patch utility using Chocolatey
+choco install patch
+
+Locate where is playwright installed:
+pip show playwright
+# e.g., venv\lib\site-packages
+
+Go to the folder where playwrights (javascript-based) files are located
+# e.g., venv\lib\site-packages\playwright\driver\package
+patch -p1 < path/to/your/patch-file.patch
